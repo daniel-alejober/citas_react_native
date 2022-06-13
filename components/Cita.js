@@ -4,17 +4,29 @@ import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
 const Cita = ({ cita, eliminarPaciente }) => {
   return (
     <View style={styles.cita}>
-      <View>
+      <View style={styles.infoCita}>
         <Text style={styles.label}>Paciente:</Text>
         <Text style={styles.texto}>{cita.paciente}</Text>
       </View>
-      <View>
+      <View style={styles.infoCita}>
         <Text style={styles.label}>Propietario:</Text>
         <Text style={styles.texto}>{cita.propietario}</Text>
       </View>
-      <View>
+      <View style={styles.infoCita}>
+        <Text style={styles.label}>Contacto:</Text>
+        <Text style={styles.texto}>{cita.telefono}</Text>
+      </View>
+      <View style={styles.infoCita}>
+        <Text style={styles.label}>Fecha Cita:</Text>
+        <Text style={styles.texto}>{cita.fecha}</Text>
+      </View>
+      <View style={styles.infoCita}>
+        <Text style={styles.label}>Hora Cita:</Text>
+        <Text style={styles.texto}>{cita.hora}</Text>
+      </View>
+      <View style={styles.infoCita}>
         <Text style={styles.label}>Síntomas:</Text>
-        <Text style={styles.texto}>{cita.propietario}</Text>
+        <Text style={styles.texto}>{cita.sintomas}</Text>
       </View>
       <View>
         <TouchableHighlight
@@ -37,8 +49,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  label: { fontWeight: "bold", fontSize: 18, marginTop: 10 },
-  texto: { fontSize: 15 },
+  infoCita: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  label: { fontWeight: "bold", fontSize: 18 },
+  texto: { fontSize: 15, marginLeft: 4, color: "gray", fontWeight: "bold" },
   btnEliminar: {
     padding: 10,
     backgroundColor: "red",
