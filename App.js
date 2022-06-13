@@ -5,6 +5,8 @@ import {
   View,
   FlatList,
   TouchableHighlight,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import Constants from "expo-constants";
 //*expo-constants-es un paquete que ya viene instalado en expo y te ofrece estilos ya definidos
@@ -28,47 +30,58 @@ export default function App() {
     setMostrarForm(!mostrarForm);
   };
 
+  const cerrarTeclado = () => {
+    //*Cerrar el teclado del usuario
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Administrador de Citas</Text>
-      <View>
-        <TouchableHighlight
-          style={styles.btnMostrar}
-          onPress={mostrarFormulario}
-        >
-          <Text style={styles.textMostrar}>Agregar Cita &#128021;</Text>
-        </TouchableHighlight>
-      </View>
-      <View style={styles.contenido}>
-        {mostrarForm ? (
-          <>
-            <Text style={styles.subTitle}>Crea Nueva Cita</Text>
-            <Formulario
-              setCitas={setCitas}
-              citas={citas}
-              setMostrarForm={setMostrarForm}
-            />
-          </>
-        ) : (
-          <>
-            <Text style={styles.subTitle}>
-              {citas.length ? "Administra tus Citas" : "No tienes ninguna cita"}
+    <TouchableWithoutFeedback onPress={cerrarTeclado}>
+      <View style={styles.contenedor}>
+        <Text style={styles.titulo}>Administrador de Citas</Text>
+        <View>
+          <TouchableHighlight
+            style={styles.btnMostrar}
+            onPress={mostrarFormulario}
+          >
+            <Text style={styles.textMostrar}>
+              {mostrarForm ? "Cancelar Cita" : "Agregar Cita"}
             </Text>
-            <FlatList
-              style={styles.listado}
-              data={citas}
-              renderItem={({ item: cita }) => (
-                <Cita
-                  key={cita.id}
-                  cita={cita}
-                  eliminarPaciente={eliminarPaciente}
-                />
-              )}
-            />
-          </>
-        )}
+          </TouchableHighlight>
+        </View>
+        <View style={styles.contenido}>
+          {mostrarForm ? (
+            <>
+              <Text style={styles.subTitle}>Crea Nueva Cita</Text>
+              <Formulario
+                setCitas={setCitas}
+                citas={citas}
+                setMostrarForm={setMostrarForm}
+              />
+            </>
+          ) : (
+            <>
+              <Text style={styles.subTitle}>
+                {citas.length
+                  ? "Administra tus Citas"
+                  : "No tienes ninguna cita"}
+              </Text>
+              <FlatList
+                style={styles.listado}
+                data={citas}
+                renderItem={({ item: cita }) => (
+                  <Cita
+                    key={cita.id}
+                    cita={cita}
+                    eliminarPaciente={eliminarPaciente}
+                  />
+                )}
+              />
+            </>
+          )}
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
