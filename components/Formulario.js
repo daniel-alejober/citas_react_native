@@ -22,7 +22,6 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
 
-  //*Muestra u oculta el input de fecha de DateTimePicker
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -40,7 +39,6 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
     hideDatePicker();
   };
 
-  //*Muestra u oculta el input de fecha de DateTimePicker
   const showTimePicker = () => {
     setTimePickerVisibility(true);
   };
@@ -78,8 +76,6 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
       hora,
     };
     setCitas([...citas, cita]);
-
-    //*Ocultar el formulario
     setMostrarForm(false);
   };
 
@@ -107,7 +103,7 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
           keyboardType="numeric"
         />
       </View>
-      {/* Input para la fecha, locale sirve para personalizar */}
+
       <View>
         <Text style={styles.label}>Fecha</Text>
         <Button
@@ -121,13 +117,13 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
           mode="date"
           onConfirm={handleConfirmDate}
           onCancel={hideDatePicker}
-          locale="es_ES"
+          locale="es-ES"
           customHeaderIOS="Elige una Fecha"
           cancelTextIOS="Cancelar"
           confirmTextIOS="Confirmar"
         />
       </View>
-      {/* Input para la Hora */}
+
       <View>
         <Text style={styles.label}>Hora</Text>
         <Button
@@ -139,13 +135,13 @@ const Formulario = ({ citas, setCitas, setMostrarForm }) => {
           mode="time"
           onConfirm={handleConfirmTime}
           onCancel={hideTimePicker}
-          locale="es-Es"
+          locale="es-ES"
           customHeaderIOS="Elige una Hora"
           cancelTextIOS="Cancelar"
           confirmTextIOS="Confirmar"
         />
       </View>
-      {/* Multiline nos da la posibilidad de crear un tipo textarea */}
+
       <View>
         <Text style={styles.label}>Síntomas</Text>
         <TextInput

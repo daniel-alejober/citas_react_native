@@ -1,5 +1,4 @@
 import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
-//*El componente de Button no se le pueden cambiar los estilos por defecto te dara los estilos dependiendo de android y ios, y asi se usa  <Button title="Eliminar" /> para eso usamos TouchableHighlight
 
 const Cita = ({ cita, eliminarPaciente }) => {
   return (
